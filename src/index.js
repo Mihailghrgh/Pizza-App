@@ -56,17 +56,6 @@ function App() {
     </div>
   );
 }
-
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/prosciutto.jpg" alt="Pizza Prosciutto" />
-      <h3> Pizza Prosciutto </h3>{" "}
-      <p> Tomato, mozarella, ham, aragula, and burrata cheese</p>
-    </div>
-  );
-}
-
 function Header() {
   const style = { color: " red", fontSize: "32px", textTransform: "uppercase" };
 
@@ -77,18 +66,49 @@ function Header() {
   );
 }
 
-function Menu() {
+function Pizza(props) {
   return (
-    <div>
-      <main className="menu">
-        <h2> Our menu</h2>
-        <Pizza />
-        <Pizza />
-        <Pizza />
-      </main>
-    </div>
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt="" />
+      <div>
+        <h3> {props.pizzaObj.name} </h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price + 3}</span>
+      </div>
+    </li>
   );
 }
+
+function Menu() {
+  const pizzas = pizzaData;
+
+  return (
+    <main className="menu">
+      <h2> Our menu</h2>
+
+      {/* <div>
+        {pizzaData.map((pizza) => (
+          <Pizza
+            name={pizza.name}
+            photoName={pizza.photoName}
+            ingredients={pizza.ingredients}
+            price={pizza.price}
+          />
+        ))}
+      </div> */}
+
+      <ul className="pizzas">
+        {pizzas.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+      {/* <Pizza />
+        <Pizza />
+        <Pizza /> */}
+    </main>
+  );
+}
+console.log("working");
 
 function Footer() {
   const hour = new Date().getHours();
@@ -105,7 +125,12 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. We are currently open
+      {isOpen && (
+        <div>
+          <p> We are open until{closeHour}:00. Come visit us order online!</p>
+          <button className="btn"> Order </button>
+        </div>
+      )}
     </footer>
   );
 }

@@ -174,6 +174,7 @@ body {
   background-color: #edc84b;
   padding: 1.4rem 3.2rem;
   cursor: pointer;
+  margin-top: 20px; /* Adds spacing above */
   transition: all 0.2s;
 }
 
