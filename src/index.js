@@ -1,5 +1,6 @@
-import React from "react";
+import React, { createElement } from "react";
 import ReactDom from "react-dom/client";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -49,7 +50,9 @@ const pizzaData = [
 function App() {
   return (
     <div>
-      <h1> Mama Mia Pizzerie</h1> <Pizza /> <Pizza /> <Pizza />
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
@@ -58,11 +61,55 @@ function Pizza() {
   return (
     <div>
       <img src="pizzas/prosciutto.jpg" alt="Pizza Prosciutto" />
-      <h2> Pizza Prosciutto </h2>{" "}
+      <h3> Pizza Prosciutto </h3>{" "}
       <p> Tomato, mozarella, ham, aragula, and burrata cheese</p>
     </div>
   );
 }
+
+function Header() {
+  const style = { color: " red", fontSize: "32px", textTransform: "uppercase" };
+
+  return (
+    <header className="header">
+      <h1> Pizza Menu Domine Patrie</h1>
+    </header>
+  );
+}
+
+function Menu() {
+  return (
+    <div>
+      <main className="menu">
+        <h2> Our menu</h2>
+        <Pizza />
+        <Pizza />
+        <Pizza />
+      </main>
+    </div>
+  );
+}
+
+function Footer() {
+  const hour = new Date().getHours();
+  console.log(hour);
+  const openHour = 12;
+  const closeHour = 22;
+
+  const isOpen = hour >= openHour && hour <= closeHour;
+  // hour >= openHour && hour <= closeHour
+  //   ? alert("We are open!")
+  //   : alert(
+  //       `We are close ! We open at : ${openHour} and close at : ${closeHour}`
+  //     );
+
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We are currently open
+    </footer>
+  );
+}
+
 //How to start a react application with react simple as that
 const root = ReactDom.createRoot(document.getElementById("root"));
 root.render(
@@ -71,5 +118,3 @@ root.render(
     <App />{" "}
   </React.StrictMode>
 );
-console.log("It worked");
-console.log("Reload");
