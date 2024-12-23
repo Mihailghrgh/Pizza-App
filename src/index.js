@@ -97,11 +97,15 @@ function Menu() {
         ))}
       </div> */}
 
-      <ul className="pizzas">
-        {pizzas.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {pizzas.length > 0 ? (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : (
+        <p> We are still coming to out menu</p>
+      )}
       {/* <Pizza />
         <Pizza />
         <Pizza /> */}
@@ -109,6 +113,7 @@ function Menu() {
   );
 }
 console.log("working");
+console.log("checking");
 
 function Footer() {
   const hour = new Date().getHours();
